@@ -7,7 +7,6 @@ import com.user.userAuth.models.Role;
 import com.user.userAuth.models.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
@@ -29,7 +28,7 @@ public class CustomerUserDetails implements UserDetails {
 
     public CustomerUserDetails(User user){
         this.userName = user.getEmail();
-        this.password = user.getHashPassword();
+        this.password = user.getHashedPassword();
         for(Role role : user.getRoles()){
             authorityList.add(new CustomGrantedAuthority(role));
         }

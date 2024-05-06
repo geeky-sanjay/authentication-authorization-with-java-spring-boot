@@ -27,7 +27,7 @@ public class UserService {
         User user = new User();
         user.setName(name);
         user.setEmail(email);
-        user.setHashPassword(bCryptPasswordEncoder.encode(password));
+        user.setHashedPassword(bCryptPasswordEncoder.encode(password));
         return userRepository.save(user);
     }
 
@@ -37,7 +37,7 @@ public class UserService {
            throw new InvalidCredentialsException();
        }
 
-        if (!bCryptPasswordEncoder.matches(password, user.get().getHashPassword())) {
+        if (!bCryptPasswordEncoder.matches(password, user.get().getHashedPassword())) {
             throw new InvalidCredentialsException();
         }
 

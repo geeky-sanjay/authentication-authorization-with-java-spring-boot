@@ -13,9 +13,9 @@ import java.util.List;
 @Setter
 public class User extends BaseModel{
     private String name;
-    private String hashPassword;
+    private String hashedPassword;
     private String email;
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
-    private boolean isEmailVarified;
+    private boolean isEmailVerified;
 }
