@@ -44,7 +44,7 @@ public class UserService {
        Token token = new Token();
        token.setUser(user.get());
        token.setValue(UUID.randomUUID().toString());
-       token.setExpiryDate(get30DaysLaterDate());
+       token.setExpirydate(get30DaysLaterDate());
        return tokenRepository.save(token);
     }
 

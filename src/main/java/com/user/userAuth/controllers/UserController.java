@@ -28,17 +28,17 @@ UserService userService;
     }
 
     @PostMapping("/login")
-    public Token login(@RequestBody LoginRequestDto loginRequestDto){
+    public ResponseEntity<Token> login(@RequestBody LoginRequestDto loginRequestDto) {
         try {
             String email = loginRequestDto.getEmail();
             String password = loginRequestDto.getPassword();
-            return userService.login(email, password);
-        }catch (InvalidCredentialsException e){
-                System.out.println(e.getMessage());
+            Token token = userService.login(email, password);
+            return ResponseEntity.ok(token);
+        } catch (InvalidCredentialsException e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-        return null;
     }
-
     @PostMapping("/logout")
     public ResponseEntity<Void> logout(@RequestParam String token){
         userService.logout(token);
